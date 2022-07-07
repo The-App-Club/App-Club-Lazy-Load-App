@@ -1,0 +1,70 @@
+@use 'sass:math';
+// https://sass-lang.com/documentation/modules/math
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  width: 100vw;
+}
+
+#imageWall {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: center;
+  margin: auto;
+  width: 330px;
+
+  & > div {
+    border: 1px solid #aaa;
+    height: 50px;
+    position: relative;
+    width: 50px;
+
+    img {
+      height: 100%;
+      opacity: 1;
+      transition: opacity 0.3s;
+      width: 100%;
+    }
+
+    &.loading {
+      img {
+        opacity: 0;
+      }
+      &::before {
+        $spinner-size: 25px;
+        animation: spin 3s linear;
+        border: 2px dotted gray;
+        border-radius: 100%;
+        content: '';
+        height: $spinner-size;
+        left: calc(50% - math.div($spinner-size, 2));
+        position: absolute;
+        top: calc(50% - math.div($spinner-size, 2));
+        width: $spinner-size;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

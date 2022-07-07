@@ -1,0 +1,8 @@
+.gitkeep
+*ico
+*png
+.gitignore
+.prettierignore
+.stylelintignore
+robots.txt
+yarn.lock
